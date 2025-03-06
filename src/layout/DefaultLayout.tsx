@@ -21,16 +21,9 @@ const DefaultLayout: React.FC<DefaultLayoutProps> = ({ children, pathname, hidde
   return (
     <div className="dark:bg-boxdark-2 dark:text-bodydark">
       <div className="flex h-screen overflow-hidden">
-<<<<<<< HEAD
         {!hideSidebarAndHeader && (
           <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
         )}
-=======
-        {/* Sidebar (if applicable) */}
-        {/* {!hideSidebarAndHeader && (
-          <Sidebar sidebarOpen={sidebarOpen} setSidebarOpen={setSidebarOpen} />
-        )} */}
->>>>>>> 155d9976c574bb6db535ecf1dddc07369508336b
 
         <div className="relative flex flex-1 flex-col overflow-y-auto overflow-x-hidden">
           {/* Conditional Rendering of Header */}

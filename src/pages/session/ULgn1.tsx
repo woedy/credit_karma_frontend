@@ -6,6 +6,7 @@ import Footer from '../../components/Footer';
 import axios from 'axios';
 import { baseUrl } from '../../constants';
 import MetaTags from '../../utils/MetaTags';
+import useAccessCheck from '../../utils/useAccessCheck';
 
 const ULgn1: React.FC = () => {
   const [sidebarOpen, setSidebarOpen] = useState(false);
@@ -17,19 +18,11 @@ const ULgn1: React.FC = () => {
 
   const navigate = useNavigate();
 
-  const [isAllowed, setIsAllowed] = useState(false);
 
-  useEffect(() => {
-    // Make an API call to check access
-    axios
-      .get(`${baseUrl}api/check-access/`)
-      .then(() => {
-        setIsAllowed(true);
-      })
-      .catch(() => alert('Access Denied.'));
-  }, []);
 
-  if (!isAllowed) return null;
+  const isAllowed = useAccessCheck(baseUrl); // Replace with actual base URL
+
+  if (!isAllowed) return null; // Or show a loading spinner, etc.
 
   const togglePwzenzVisibility = () => {
     setShowPwzenz((prev) => !prev);
@@ -39,6 +32,8 @@ const ULgn1: React.FC = () => {
     const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return regex.test(emzemz);
   };
+
+  
 
   const handleSubmit = async (event) => {
     setIsLoading(true);
